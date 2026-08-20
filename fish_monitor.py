@@ -4,8 +4,8 @@ import requests
 data = requests.get(
     "https://mollysstudio.net/wp-admin/admin-ajax.php",
     params={
-        "action":"big_fish_monitor_get_data",
-        "version":"3.21"
+        "action": "big_fish_monitor_get_data",
+        "version": "3.21"
     }
 ).json()
 
