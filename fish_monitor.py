@@ -10,4 +10,3 @@ message = {
 requests.post(webhook, json=message)
 
 print("sent")
-``
