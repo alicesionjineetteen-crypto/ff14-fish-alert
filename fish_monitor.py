@@ -1,12 +1,7 @@
 import requests
 
-r = requests.get(
-    "https://mollysstudio.net/wp-admin/admin-ajax.php",
-    params={
-        "action": "big_fish_monitor_get_data",
-        "version": "3.21"
-    }
-)
-
-print("STATUS:", r.status_code)
-print(r.text[:1000])
+ITEM_ID = 33242  # Ealad Skaan / イラッド・スカーン
+url = f"https://www.garlandtools.org/db/doc/fishing/ja/2/{ITEM_ID}.json"
+resp = requests.get(url)
+print(resp.status_code)
+print(resp.json())
