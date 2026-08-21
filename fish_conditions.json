@@ -1,0 +1,615 @@
+[
+  {
+    "name": "イラッド・スカーン",
+    "type": "オオヌシ",
+    "zone_jp": "イル・メグ",
+    "zone_en": "Il Mheg",
+    "point": "姿見の湖",
+    "time_raw": "ET 23:30-23:59",
+    "weather_raw": "雷雨 → 快晴",
+    "start_hm": [
+      23,
+      30
+    ],
+    "end_hm": [
+      23,
+      59
+    ],
+    "weather": "Clear Skies",
+    "prev_weather": "Thunderstorms",
+    "method_lines": [
+      "蟲箱でイラッド・スカーンを釣る"
+    ],
+    "prerequisites": [],
+    "caught": false
+  },
+  {
+    "name": "モラ・テクタ",
+    "type": "ヌシ",
+    "zone_jp": "テンペスト",
+    "zone_en": "The Tempest",
+    "point": "キャリバン海底谷北西",
+    "time_raw": "ET 22:00-23:59 フィッシュアイ有効",
+    "weather_raw": "晴れ",
+    "start_hm": [
+      22,
+      0
+    ],
+    "end_hm": [
+      23,
+      59
+    ],
+    "weather": "Fair Skies",
+    "prev_weather": null,
+    "method_lines": [
+      "ショートビルミノーでモラ・テクタを釣る"
+    ],
+    "prerequisites": [],
+    "caught": false
+  },
+  {
+    "name": "ミズウオ",
+    "type": "オオヌシ",
+    "zone_jp": "テンペスト",
+    "zone_en": "The Tempest",
+    "point": "キャリバン海底谷北西",
+    "time_raw": "ET 0:00-1:59",
+    "weather_raw": "晴れ → 曇り",
+    "start_hm": [
+      0,
+      0
+    ],
+    "end_hm": [
+      1,
+      59
+    ],
+    "weather": "Clouds",
+    "prev_weather": "Fair Skies",
+    "method_lines": [
+      "ショートビルミノーでモラ・テクタを釣る",
+      "※ 条件はモラ・テクタの項を参照",
+      "モラ・テクタを2匹釣り、漁師の直感を発動（12分）",
+      "イカの切り身でミズウオを釣る"
+    ],
+    "prerequisites": [
+      "モラ・テクタ"
+    ],
+    "caught": false
+  },
+  {
+    "name": "パライナ",
+    "type": "収集品",
+    "zone_jp": "ウルティマ・トゥーレ",
+    "zone_en": "Ultima Thule",
+    "point": "リムニ・トゥリアβ",
+    "time_raw": "ET 0:00-3:59",
+    "weather_raw": "指定なし",
+    "start_hm": [
+      0,
+      0
+    ],
+    "end_hm": [
+      3,
+      59
+    ],
+    "weather": null,
+    "prev_weather": null,
+    "method_lines": [
+      "スターダストで地平よりの帰還者[L]を釣るストロングフッキング",
+      "地平よりの帰還者（泳）でパライナを釣るストロングフッキング"
+    ],
+    "prerequisites": [],
+    "caught": false
+  },
+  {
+    "name": "スターホエール",
+    "type": "オオヌシ",
+    "zone_jp": "ウルティマ・トゥーレ",
+    "zone_en": "Ultima Thule",
+    "point": "リムニ・トゥリアβ",
+    "time_raw": "ET 0:00-7:59",
+    "weather_raw": "霊風 → 磁気嵐",
+    "start_hm": [
+      0,
+      0
+    ],
+    "end_hm": [
+      7,
+      59
+    ],
+    "weather": "Astromagnetic Storms",
+    "prev_weather": "Umbral Wind",
+    "method_lines": [
+      "スターダストでE.B.E-9318を釣るストロングフッキング",
+      "スターダストで地平よりの帰還者[L]を釣るストロングフッキング",
+      "地平よりの帰還者（泳）でアンビゴッテンストロングフッキングを釣る",
+      "パライナを釣る",
+      "※ 釣り方はパライナの項を参照",
+      "E.B.E-9318を3匹、アンビゴッテンを2匹、パライナを1匹釣り、漁師の直感を発動（10分）",
+      "地平よりの帰還者（泳）でスターホエールを釣るストロングフッキング"
+    ],
+    "prerequisites": [
+      "パライナ"
+    ],
+    "caught": false
+  },
+  {
+    "name": "ネー・ラァ・ドー",
+    "type": "オオヌシ",
+    "zone_jp": "オルコ・パチャ",
+    "zone_en": "Urqopacha",
+    "point": "カーヴァーフー湖",
+    "time_raw": "ET 15:00-15:59",
+    "weather_raw": "霧 → 風",
+    "start_hm": [
+      15,
+      0
+    ],
+    "end_hm": [
+      15,
+      59
+    ],
+    "weather": "Wind",
+    "prev_weather": "Fog",
+    "method_lines": [
+      "紅サシでネー・ラァ・ドーを釣る",
+      "要モデストルアー：水中に虹色の輝きがよぎった！"
+    ],
+    "prerequisites": [],
+    "caught": false
+  },
+  {
+    "name": "ヂェファ・ボポル",
+    "type": "オオヌシ",
+    "zone_jp": "コザマル・カ",
+    "zone_en": "Kozama'uka",
+    "point": "ミヤカ・ベック下流",
+    "time_raw": "ET 13:00-14:59",
+    "weather_raw": "曇り → 暴雨",
+    "start_hm": [
+      13,
+      0
+    ],
+    "end_hm": [
+      14,
+      59
+    ],
+    "weather": "Showers",
+    "prev_weather": "Clouds",
+    "method_lines": [
+      "ゴールデンラーヴァでウッドキャットを釣るストロングフッキング",
+      "ウッドキャットを6匹釣り、漁師の直感を発動（6分）",
+      "ウッドキャット（泳）でヂェファ・ボポルを釣るストロングフッキング"
+    ],
+    "prerequisites": [],
+    "caught": false
+  },
+  {
+    "name": "コーンシャックデイス",
+    "type": "ヌシ",
+    "zone_jp": "コザマル・カ",
+    "zone_en": "Kozama'uka",
+    "point": "クル・シャゲ",
+    "time_raw": "ET 4:00-5:59",
+    "weather_raw": "雨",
+    "start_hm": [
+      4,
+      0
+    ],
+    "end_hm": [
+      5,
+      59
+    ],
+    "weather": "Rain",
+    "prev_weather": null,
+    "method_lines": [
+      "紅サシでコーンシャックデイスを釣る"
+    ],
+    "prerequisites": [],
+    "caught": false
+  },
+  {
+    "name": "ブラックオキシドラス",
+    "type": "ヌシ",
+    "zone_jp": "コザマル・カ",
+    "zone_en": "Kozama'uka",
+    "point": "ミヤカ・ベック上流",
+    "time_raw": "ET 13:00-14:59",
+    "weather_raw": "曇り → 霧",
+    "start_hm": [
+      13,
+      0
+    ],
+    "end_hm": [
+      14,
+      59
+    ],
+    "weather": "Fog",
+    "prev_weather": "Clouds",
+    "method_lines": [
+      "ミツバチで団子魚[L]を釣るプレシジョンフッキング",
+      "団子魚（泳）でブラックオキシドラスを釣るストロングフッキング"
+    ],
+    "prerequisites": [],
+    "caught": false
+  },
+  {
+    "name": "スコップノーズキャット",
+    "type": "ヌシ",
+    "zone_jp": "コザマル・カ",
+    "zone_en": "Kozama'uka",
+    "point": "リガカの潟",
+    "time_raw": "ET 4:00-5:59",
+    "weather_raw": "雨 → 曇り",
+    "start_hm": [
+      4,
+      0
+    ],
+    "end_hm": [
+      5,
+      59
+    ],
+    "weather": "Clouds",
+    "prev_weather": "Rain",
+    "method_lines": [
+      "ポッパールアーでスコップノーズキャットを釣る"
+    ],
+    "prerequisites": [],
+    "caught": false
+  },
+  {
+    "name": "イヨンアソ・シクリッド",
+    "type": "ヌシ",
+    "zone_jp": "ヤクテル樹海",
+    "zone_en": "Yak T'el",
+    "point": "シャダータラト・ゾユ",
+    "time_raw": "指定なし",
+    "weather_raw": "快晴",
+    "start_hm": null,
+    "end_hm": null,
+    "weather": "Clear Skies",
+    "prev_weather": null,
+    "method_lines": [
+      "紅サシでイヨンアソ・シクリッドを釣る"
+    ],
+    "prerequisites": [],
+    "caught": false
+  },
+  {
+    "name": "央森の枯葉",
+    "type": "ヌシ",
+    "zone_jp": "ヤクテル樹海",
+    "zone_en": "Yak T'el",
+    "point": "イクブラーシャの溜池",
+    "time_raw": "ET 10:00-11:59",
+    "weather_raw": "指定なし",
+    "start_hm": [
+      10,
+      0
+    ],
+    "end_hm": [
+      11,
+      59
+    ],
+    "weather": null,
+    "prev_weather": null,
+    "method_lines": [
+      "紅サシで央森の枯葉を釣る"
+    ],
+    "prerequisites": [],
+    "caught": false
+  },
+  {
+    "name": "アイロンブラックアロワナ",
+    "type": "ヌシ",
+    "zone_jp": "ヤクテル樹海",
+    "zone_en": "Yak T'el",
+    "point": "イクラシュ・ゾユ",
+    "time_raw": "ET 16:00-17:59",
+    "weather_raw": "雨",
+    "start_hm": [
+      16,
+      0
+    ],
+    "end_hm": [
+      17,
+      59
+    ],
+    "weather": "Rain",
+    "prev_weather": null,
+    "method_lines": [
+      "紅サシでアイロンブラックアロワナを釣る"
+    ],
+    "prerequisites": [],
+    "caught": false
+  },
+  {
+    "name": "スカイライトハート",
+    "type": "オオヌシ",
+    "zone_jp": "ヤクテル樹海",
+    "zone_en": "Yak T'el",
+    "point": "セノーテ・ジャユンジャ",
+    "time_raw": "ET 16:00-20:59",
+    "weather_raw": "快晴 → 雨",
+    "start_hm": [
+      16,
+      0
+    ],
+    "end_hm": [
+      20,
+      59
+    ],
+    "weather": "Rain",
+    "prev_weather": "Clear Skies",
+    "method_lines": [
+      "紅サシでトゥルーソーサー[L]を釣るストロングフッキング",
+      "トゥルーソーサー（泳）でアントゥルーソーサーを釣るストロングフッキング",
+      "※ ET 16:00-20:59",
+      "トゥルーソーサーを3匹、アントゥルーソーサーを1匹釣り、漁師の直感を発動（15分）",
+      "トゥルーソーサー（泳）でスカイライトハートを釣るストロングフッキング"
+    ],
+    "prerequisites": [],
+    "caught": false
+  },
+  {
+    "name": "ロイヤル・ファロウェラ",
+    "type": "ヌシ",
+    "zone_jp": "ヤクテル樹海",
+    "zone_en": "Yak T'el",
+    "point": "甘い涌き水",
+    "time_raw": "ET 16:00-17:59",
+    "weather_raw": "雨 → 霧",
+    "start_hm": [
+      16,
+      0
+    ],
+    "end_hm": [
+      17,
+      59
+    ],
+    "weather": "Fog",
+    "prev_weather": "Rain",
+    "method_lines": [
+      "紅サシでロイヤル・ファロウェラを釣る"
+    ],
+    "prerequisites": [],
+    "caught": false
+  },
+  {
+    "name": "スターダスト・スリーパー",
+    "type": "ヌシ",
+    "zone_jp": "ヤクテル樹海",
+    "zone_en": "Yak T'el",
+    "point": "シャティーンベク・ゾユ",
+    "time_raw": "ET 20:00-23:59",
+    "weather_raw": "指定なし",
+    "start_hm": [
+      20,
+      0
+    ],
+    "end_hm": [
+      23,
+      59
+    ],
+    "weather": null,
+    "prev_weather": null,
+    "method_lines": [
+      "クリムゾンラグワームでシャークノーズゴビー[L]を釣るプレシジョンフッキング",
+      "シャークノーズゴビー（泳）でヤク・クラブ[L]を釣るストロングフッキング",
+      "ヤク・クラブ（泳）でスターダスト・スリーパーを釣るストロングフッキング"
+    ],
+    "prerequisites": [],
+    "caught": false
+  },
+  {
+    "name": "ドクトー",
+    "type": "ヌシ",
+    "zone_jp": "シャーローニ荒野",
+    "zone_en": "Shaaloani",
+    "point": "トーリ湖",
+    "time_raw": "ET 20:00-23:59",
+    "weather_raw": "晴れ → 砂塵",
+    "start_hm": [
+      20,
+      0
+    ],
+    "end_hm": [
+      23,
+      59
+    ],
+    "weather": "Dust Storms",
+    "prev_weather": "Fair Skies",
+    "method_lines": [
+      "ポッパールアーでニーケレピトラウト[L]を釣るストロングフッキング",
+      "ニーケレピトラウト（泳）でドクトーを釣るストロングフッキング"
+    ],
+    "prerequisites": [],
+    "caught": false
+  },
+  {
+    "name": "ロネークポリプテルス",
+    "type": "オオヌシ",
+    "zone_jp": "シャーローニ荒野",
+    "zone_en": "Shaaloani",
+    "point": "トーリ湖",
+    "time_raw": "ET 22:00-23:59",
+    "weather_raw": "晴れ → 砂塵",
+    "start_hm": [
+      22,
+      0
+    ],
+    "end_hm": [
+      23,
+      59
+    ],
+    "weather": "Dust Storms",
+    "prev_weather": "Fair Skies",
+    "method_lines": [
+      "ポッパールアーでニーケレピトラウト[L]を釣るストロングフッキング",
+      "ニーケレピトラウト（泳）でドクトー[L]を釣るストロングフッキング",
+      "※ ET 20:00-23:59",
+      "ドクトー（泳）でロネークポリプテルスを釣るストロングフッキング"
+    ],
+    "prerequisites": [
+      "ドクトー"
+    ],
+    "caught": false
+  },
+  {
+    "name": "スカイングスキッド",
+    "type": "ヌシ",
+    "zone_jp": "シャーローニ荒野",
+    "zone_en": "Shaaloani",
+    "point": "ゾーゴー海峡東",
+    "time_raw": "ET 18:00-23:59",
+    "weather_raw": "晴天 → 暴風",
+    "start_hm": [
+      18,
+      0
+    ],
+    "end_hm": [
+      23,
+      59
+    ],
+    "weather": "Gales",
+    "prev_weather": "Clear Skies",
+    "method_lines": [
+      "トンボでスカイングスキッドを釣る"
+    ],
+    "prerequisites": [],
+    "caught": false
+  },
+  {
+    "name": "ライトニングボール",
+    "type": "オオヌシ",
+    "zone_jp": "ヘリテージ・ファウンド",
+    "zone_en": "Heritage Found",
+    "point": "アレクサンドリア旧市街",
+    "time_raw": "ET 2:00-3:59",
+    "weather_raw": "雷雨 → 放電",
+    "start_hm": [
+      2,
+      0
+    ],
+    "end_hm": [
+      3,
+      59
+    ],
+    "weather": "Umbral Static",
+    "prev_weather": "Thunderstorms",
+    "method_lines": [
+      "紅サシでゴールデングルーパーを釣る",
+      "要アンビシャスルアー：水中に黄金の輝きがよぎった！",
+      "※ 収集品可",
+      "ゴールデングルーパーを1匹釣り、漁師の直感を発動（90秒）",
+      "紅サシでライトニングボールを釣る"
+    ],
+    "prerequisites": [],
+    "caught": false
+  },
+  {
+    "name": "ハーレクインクイーン",
+    "type": "ヌシ",
+    "zone_jp": "リビング・メモリー",
+    "zone_en": "Living Memory",
+    "point": "ザ・ノーアブル",
+    "time_raw": "ET 16:00-17:59",
+    "weather_raw": "晴れ",
+    "start_hm": [
+      16,
+      0
+    ],
+    "end_hm": [
+      17,
+      59
+    ],
+    "weather": "Fair Skies",
+    "prev_weather": null,
+    "method_lines": [
+      "紅サシでハーレクインクイーンを釣る",
+      "要アンビシャスルアー：水中を毒々しい色のヒゲがよぎった！"
+    ],
+    "prerequisites": [],
+    "caught": false
+  },
+  {
+    "name": "ジャイアントスネークヘッド",
+    "type": "ヌシ",
+    "zone_jp": "リビング・メモリー",
+    "zone_en": "Living Memory",
+    "point": "ムーの泉",
+    "time_raw": "ET 4:00-5:59",
+    "weather_raw": "雨",
+    "start_hm": [
+      4,
+      0
+    ],
+    "end_hm": [
+      5,
+      59
+    ],
+    "weather": "Rain",
+    "prev_weather": null,
+    "method_lines": [
+      "ポッパールアーでナイトゴビーを釣る",
+      "ナイトゴビーを3匹釣り、漁師の直感を発動（5分50秒）",
+      "紅サシでジャイアントスネークヘッドを釣る"
+    ],
+    "prerequisites": [],
+    "caught": false
+  },
+  {
+    "name": "ブライトカッパーシャーク",
+    "type": "ヌシ",
+    "zone_jp": "リビング・メモリー",
+    "zone_en": "Living Memory",
+    "point": "カナルタウン北",
+    "time_raw": "ET 8:00-12:59",
+    "weather_raw": "曇り → 霧",
+    "start_hm": [
+      8,
+      0
+    ],
+    "end_hm": [
+      12,
+      59
+    ],
+    "weather": "Fog",
+    "prev_weather": "Clouds",
+    "method_lines": [
+      "ゴーストニッパーでブライトカッパーシャークを釣る"
+    ],
+    "prerequisites": [],
+    "caught": false
+  },
+  {
+    "name": "三刃の鯱",
+    "type": "オオヌシ",
+    "zone_jp": "リビング・メモリー",
+    "zone_en": "Living Memory",
+    "point": "カナルタウン北",
+    "time_raw": "ET 8:00-12:59",
+    "weather_raw": "曇り → 霧",
+    "start_hm": [
+      8,
+      0
+    ],
+    "end_hm": [
+      12,
+      59
+    ],
+    "weather": "Fog",
+    "prev_weather": "Clouds",
+    "method_lines": [
+      "ゴーストニッパーでカッパーシャークを釣る",
+      "要アンビシャスルアー：水中に狂暴な気配を感じた！",
+      "※ ET 0:00-15:59",
+      "ゴーストニッパーでブライトカッパーシャークを釣る",
+      "※ ET 8:00-12:59"
+    ],
+    "prerequisites": [
+      "ブライトカッパーシャーク"
+    ],
+    "caught": false
+  }
+]
