@@ -3,7 +3,7 @@
 
 使い方:
   python fish_monitor.py daily-morning -> 土日祝の朝7時用。平日なら何もせず終了。24時間以内を通知。
-  python fish_monitor.py daily-evening -> 平日の夜19時用。土日祝なら何もせず終了。向こう6時間以内を通知。
+  python fish_monitor.py daily-evening -> 平日の夜18時用。土日祝なら何もせず終了。向こう7時間以内を通知。
   python fish_monitor.py daily         -> 曜日を問わず、今から24時間以内を通知(手動実行・Discordコマンド用)
   python fish_monitor.py weekly        -> 未取得の「オオヌシ」について、今から7日以内の出現を通知(週間の予定立て用)
 
@@ -104,9 +104,9 @@ def format_occurrences(occurrences, limit=None):
     shown = occurrences[:limit] if limit else occurrences
     for begin, end in shown:
         b = begin.astimezone(JST)
-        lines.append(f"　・{b.strftime('%m/%d(%a) %H:%M')}〜")
+        lines.append(f" ・{b.strftime('%m/%d(%a) %H:%M')}〜")
     if limit and len(occurrences) > limit:
-        lines.append(f"　　...他 {len(occurrences) - limit} 回")
+        lines.append(f"  ...他 {len(occurrences) - limit} 回")
     return lines
 
 
@@ -118,7 +118,7 @@ def format_fish_block(fish, occurrences, indent="", limit=None):
     if fish["method_lines"]:
         lines.append(f"{indent}釣り方:")
         for m in fish["method_lines"]:
-            lines.append(f"{indent}　{m}")
+            lines.append(f"{indent} {m}")
     if not occurrences:
         lines.append(f"{indent}(該当なし)")
     else:
@@ -129,7 +129,7 @@ def format_fish_block(fish, occurrences, indent="", limit=None):
 def build_report(fish_types, title, days_ahead=None, hours_ahead=None):
     """
     days_ahead / hours_ahead のどちらか一方を指定する。
-    (例: days_ahead=1 なら24時間以内、hours_ahead=5 なら5時間以内)
+    (例: days_ahead=1 なら24時間以内、hours_ahead=7 なら7時間以内)
     """
     fish_list = load_fish()
     now = datetime.datetime.now(datetime.timezone.utc)
@@ -159,8 +159,8 @@ def build_report(fish_types, title, days_ahead=None, hours_ahead=None):
             if prereq is None:
                 continue
             prereq_occ = scan_fish(prereq, now, scan_end)
-            prereq_block = format_fish_block(prereq, prereq_occ, indent="　", limit=5)
-            block += f"\n\n　※前提: {prereq_name}\n{prereq_block}"
+            prereq_block = format_fish_block(prereq, prereq_occ, indent=" ", limit=5)
+            block += f"\n\n ※前提: {prereq_name}\n{prereq_block}"
 
         blocks.append(block)
 
@@ -210,16 +210,16 @@ def main():
     if mode == "daily-morning":
         # 土日祝の朝7時枠。平日はここでは何もしない(夜枠が担当)
         if is_business_day(today_jst):
-            print("平日のため朝の通知はスキップします(夜19時に通知します)")
+            print("平日のため朝の通知はスキップします(夜18時に通知します)")
             return
         run_daily(days_ahead=1)
 
     elif mode == "daily-evening":
-        # 平日の夜19時枠。土日祝はここでは何もしない(朝枠が担当)
+        # 平日の夜18時枠。土日祝はここでは何もしない(朝枠が担当)
         if not is_business_day(today_jst):
             print("土日祝のため夜の通知はスキップします(朝に通知済みです)")
             return
-        run_daily(hours_ahead=6)
+        run_daily(hours_ahead=7)
 
     elif mode == "daily":
         # 曜日を問わず24時間以内を通知(手動実行 / Discordコマンド[repository_dispatch]用)
@@ -237,3 +237,4 @@ def main():
 
 if __name__ == "__main__":
     main()
+  
