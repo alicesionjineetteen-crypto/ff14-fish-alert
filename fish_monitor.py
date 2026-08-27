@@ -2,8 +2,14 @@
 ヌシ・オオヌシ 出現スケジュール監視 & Discord通知
 
 使い方:
-  python fish_monitor.py daily   -> 未取得の「ヌシ」「オオヌシ」について、今から24時間以内の出現を通知
-  python fish_monitor.py weekly  -> 未取得の「オオヌシ」について、今から7日以内の出現を通知(週間の予定立て用)
+  python fish_monitor.py daily-morning -> 土日祝の朝7時用。平日なら何もせず終了。24時間以内を通知。
+  python fish_monitor.py daily-evening -> 平日の夜19時用。土日祝なら何もせず終了。向こう6時間以内を通知。
+  python fish_monitor.py daily         -> 曜日を問わず、今から24時間以内を通知(手動実行・Discordコマンド用)
+  python fish_monitor.py weekly        -> 未取得の「オオヌシ」について、今から7日以内の出現を通知(週間の予定立て用)
+
+Discordから「/デイリー」「/ウィークリー」と打つと、Cloudflare Workers経由でGitHub Actionsの
+repository_dispatchが発火し、このスクリプトが daily / weekly モードで即座に実行されます。
+(詳細は cloudflare-worker/README.md を参照)
 
 fish_conditions.json の "caught": true にした魚は通知対象から除外されます。
 """
@@ -13,6 +19,7 @@ import os
 import json
 import datetime
 import requests
+import jpholiday
 
 from weather import (
     period_weather, real_to_eorzea, et_to_real, PERIOD, WEATHER_RATES,
@@ -20,6 +27,15 @@ from weather import (
 
 JST = datetime.timezone(datetime.timedelta(hours=9))
 HERE = os.path.dirname(os.path.abspath(__file__))
+
+
+def is_business_day(date: datetime.date) -> bool:
+    """平日(月〜金)かつ日本の祝日でなければ True"""
+    if date.weekday() >= 5:  # 5=土, 6=日
+        return False
+    if jpholiday.is_holiday(date):
+        return False
+    return True
 
 
 def load_fish():
@@ -110,10 +126,17 @@ def format_fish_block(fish, occurrences, indent="", limit=None):
     return "\n".join(lines)
 
 
-def build_report(fish_types, days_ahead, title):
+def build_report(fish_types, title, days_ahead=None, hours_ahead=None):
+    """
+    days_ahead / hours_ahead のどちらか一方を指定する。
+    (例: days_ahead=1 なら24時間以内、hours_ahead=5 なら5時間以内)
+    """
     fish_list = load_fish()
     now = datetime.datetime.now(datetime.timezone.utc)
-    scan_end = now + datetime.timedelta(days=days_ahead)
+    if hours_ahead is not None:
+        scan_end = now + datetime.timedelta(hours=hours_ahead)
+    else:
+        scan_end = now + datetime.timedelta(days=days_ahead)
 
     blocks = []
     for fish in fish_list:
@@ -158,25 +181,58 @@ def send_discord(content: str):
         requests.post(webhook, json={"content": chunk})
 
 
-def main():
-    mode = sys.argv[1] if len(sys.argv) > 1 else "daily"
-
-    if mode == "daily":
-        content = build_report(
-            ["ヌシ", "オオヌシ"], 1,
-            "🐟 本日の未取得ヌシ・オオヌシ出現予定(24時間以内)",
-        )
-    elif mode == "weekly":
-        content = build_report(
-            ["オオヌシ"], 7,
-            "🐋 今週の未取得オオヌシ出現予定(7日以内・予定立て用)",
-        )
+def run_daily(hours_ahead=None, days_ahead=None, suffix=""):
+    if hours_ahead is not None:
+        title = f"🐟 本日の未取得ヌシ・オオヌシ出現予定(向こう{hours_ahead}時間以内){suffix}"
     else:
-        print("Usage: python fish_monitor.py [daily|weekly]")
-        sys.exit(1)
-
+        title = f"🐟 本日の未取得ヌシ・オオヌシ出現予定(24時間以内){suffix}"
+    content = build_report(
+        ["ヌシ", "オオヌシ"], title,
+        days_ahead=days_ahead, hours_ahead=hours_ahead,
+    )
     print(content)
     send_discord(content)
+
+
+def run_weekly(suffix=""):
+    content = build_report(
+        ["オオヌシ"], f"🐋 今週の未取得オオヌシ出現予定(7日以内・予定立て用){suffix}",
+        days_ahead=7,
+    )
+    print(content)
+    send_discord(content)
+
+
+def main():
+    mode = sys.argv[1] if len(sys.argv) > 1 else "daily"
+    today_jst = datetime.datetime.now(JST).date()
+
+    if mode == "daily-morning":
+        # 土日祝の朝7時枠。平日はここでは何もしない(夜枠が担当)
+        if is_business_day(today_jst):
+            print("平日のため朝の通知はスキップします(夜19時に通知します)")
+            return
+        run_daily(days_ahead=1)
+
+    elif mode == "daily-evening":
+        # 平日の夜19時枠。土日祝はここでは何もしない(朝枠が担当)
+        if not is_business_day(today_jst):
+            print("土日祝のため夜の通知はスキップします(朝に通知済みです)")
+            return
+        run_daily(hours_ahead=6)
+
+    elif mode == "daily":
+        # 曜日を問わず24時間以内を通知(手動実行 / Discordコマンド[repository_dispatch]用)
+        suffix = "・Discordコマンド実行" if os.environ.get("GITHUB_EVENT_NAME") == "repository_dispatch" else ""
+        run_daily(days_ahead=1, suffix=suffix)
+
+    elif mode == "weekly":
+        suffix = "・Discordコマンド実行" if os.environ.get("GITHUB_EVENT_NAME") == "repository_dispatch" else ""
+        run_weekly(suffix=suffix)
+
+    else:
+        print("Usage: python fish_monitor.py [daily-morning|daily-evening|daily|weekly]")
+        sys.exit(1)
 
 
 if __name__ == "__main__":

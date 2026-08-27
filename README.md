@@ -5,10 +5,33 @@
    (`.github/workflows/fish_alert.yml` はそのままのパスで配置してください)
 2. リポジトリの Settings > Secrets and variables > Actions で
    `DISCORD_WEBHOOK` を登録(Discordの通知先Webhook URL)
-3. これでOK。以降は自動で
-   - 毎日 朝7:00(JST): 未取得「ヌシ」「オオヌシ」の24時間以内の出現予定(当日行けるかどうか用)
-   - 毎週月曜 朝7:00(JST): 未取得「オオヌシ」の7日以内の出現予定(週間の予定立て用)
-   がDiscordに通知されます。
+3. Discordのスラッシュコマンド(`/デイリー` `/ウィークリー`)で手動実行したい場合は、
+   `cloudflare-worker/README.md` の手順に沿ってセットアップしてください
+   (セットアップしない場合、自動の定期通知だけが動作します)
+4. これでOK。以降は自動で
+   - **平日** 夜19:00(JST): 未取得「ヌシ」「オオヌシ」の**向こう6時間以内**の出現予定
+   - **土日祝** 朝7:00(JST): 未取得「ヌシ」「オオヌシ」の**24時間以内**の出現予定(従来通り)
+   - 毎週月曜 朝7:00(JST): 未取得「オオヌシ」の7日以内の出現予定(週間の予定立て用、変更なし)
+
+   がDiscordに通知されます。祝日判定には `jpholiday` ライブラリ(内蔵の祝日データ、外部
+   通信なし)を使用しています。
+
+## Discordスラッシュコマンドでの手動実行
+Discordで `/デイリー` または `/ウィークリー` と打つと、即座にGitHub Actionsが起動し、
+その場でレポートを実行してDiscordに投稿します。
+
+Cloudflare Workers(サーバーレス。常時起動のサーバーは不要で、無料枠で足ります)が
+Discordからのリクエストを即時に受け取り、GitHub Actionsの `repository_dispatch` を
+呼び出す仕組みです。コマンドを打ってから数秒で「開始しました」と返信があり、その後
+数十秒〜1分程度でレポートがDiscordに届きます。
+
+セットアップ手順の詳細は `cloudflare-worker/README.md` を参照してください
+(Discordアプリの作成、Cloudflare Workerのデプロイ、GitHubトークンの発行などが
+必要です)。
+
+補足:
+- 通常の定期通知(平日夜19時/土日祝朝7時/週次)はこの手動実行の設定がなくても
+  そのまま動作します。スラッシュコマンドはあくまで「今すぐ見たい」ときの追加機能です
 
 各魚の通知には、釣り場・時刻・天候に加えて「釣り方」(必要な餌・あたりの種類[ストロング
 フッキング/プレシジョンフッキング]など)もそのまま記載されます。また、前提となる魚
@@ -22,13 +45,19 @@
 
 ## 動作確認・手動実行
 GitHub の Actions タブ → "FF14 Fish Alert" → "Run workflow" から
-daily/weekly を選んで手動実行できます。
+以下のモードを選んで手動実行できます。
+- `daily`: 曜日を問わず24時間以内を通知
+- `daily-morning`: 朝枠と同じロジック(土日祝のみ実際に通知、平日はスキップ)
+- `daily-evening`: 夜枠と同じロジック(平日のみ実際に通知、土日祝はスキップ)
+- `weekly`: 7日以内のオオヌシを通知
 
 ローカルで試す場合:
 ```
 pip install -r requirements.txt
 export DISCORD_WEBHOOK="https://discord.com/api/webhooks/xxxx"
 python fish_monitor.py daily
+python fish_monitor.py daily-morning
+python fish_monitor.py daily-evening
 python fish_monitor.py weekly
 ```
 
