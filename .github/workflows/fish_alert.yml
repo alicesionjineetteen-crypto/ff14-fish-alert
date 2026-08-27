@@ -4,8 +4,8 @@ on:
   schedule:
     # 毎日 7:00 JST = 前日 22:00 UTC -> 土日祝はここでヌシ(24時間以内)を通知。平日はスキップ(夜枠が担当)
     - cron: '0 22 * * *'
-    # 毎日 19:00 JST = 10:00 UTC -> 平日はここでヌシ(向こう6時間以内)を通知。土日祝はスキップ(朝枠が担当)
-    - cron: '0 10 * * *'
+    # 毎日 18:00 JST = 9:00 UTC -> 平日はここでヌシ(向こう7時間以内)を通知。土日祝はスキップ(朝枠が担当)
+    - cron: '0 9 * * *'
     # 毎週月曜 7:00 JST = 日曜 22:00 UTC -> オオヌシ(7日以内)
     - cron: '0 22 * * 0'
   repository_dispatch:
@@ -40,8 +40,8 @@ jobs:
           DISCORD_WEBHOOK: ${{ secrets.DISCORD_WEBHOOK }}
 
   daily-evening:
-    # 平日の夜19時枠(土日祝かどうかはPythonスクリプト側で判定してスキップします)
-    if: github.event.schedule == '0 10 * * *' || (github.event_name == 'workflow_dispatch' && github.event.inputs.mode == 'daily-evening')
+    # 平日の夜18時枠(土日祝かどうかはPythonスクリプト側で判定してスキップします)
+    if: github.event.schedule == '0 9 * * *' || (github.event_name == 'workflow_dispatch' && github.event.inputs.mode == 'daily-evening')
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
