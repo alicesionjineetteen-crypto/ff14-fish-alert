@@ -210,7 +210,7 @@ def main():
     if mode == "daily-morning":
         # 土日祝の朝7時枠。平日はここでは何もしない(夜枠が担当)
         if is_business_day(today_jst):
-            print("平日のため朝の通知はスキップします(夜18時に通知します)")
+            print("平日のため朝の通知はスキップします(夜19時に通知します)")
             return
         run_daily(days_ahead=1)
 
